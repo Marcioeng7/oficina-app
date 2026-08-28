@@ -1,13 +1,12 @@
-const CACHE_NAME = 'oficina-v4'; 
+const CACHE_NAME = 'oficina-vercel-v1'; 
 const ASSETS = [
-  '/oficina-app/',
-  '/oficina-app/index.html',
-  '/oficina-app/manifest.json',
-  '/oficina-app/icon-192.png',
-  '/oficina-app/icon-512.png'
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/icon-192.png',
+  '/icon-512.png'
 ];
 
-// Instala e força o novo Service Worker a assumir o controle imediatamente
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -16,7 +15,6 @@ self.addEventListener('install', (e) => {
   );
 });
 
-// Remove caches antigos (v1, v2, v3) e limpa a memória do celular
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys().then((keys) => {
@@ -31,7 +29,6 @@ self.addEventListener('activate', (e) => {
   );
 });
 
-// Busca os arquivos atualizados
 self.addEventListener('fetch', (e) => {
   e.respondWith(
     caches.match(e.request).then((cachedResponse) => {

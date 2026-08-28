@@ -14,11 +14,11 @@
   <meta name="apple-mobile-web-app-title" content="Oficina">
   <link rel="apple-touch-icon" href="icon-192.png">
 
-  <!-- Ativador do modo offline atualizado para oficina-app -->
+  <!-- Ativador do modo offline limpo para Vercel -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/oficina-app/sw.js')
+        navigator.serviceWorker.register('/sw.js')
           .then(reg => console.log('App pronto para uso!'))
           .catch(err => console.warn('Erro ao carregar app', err));
       });
@@ -27,7 +27,6 @@
 </head>
 <body>
 
-  <!-- O conteúdo visível do seu site -->
   <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
     <h1>Sistema da Oficina</h1>
     <p>O aplicativo da sua oficina está funcionando 100% offline!</p>
