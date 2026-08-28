@@ -18,7 +18,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/oficina/sw.js')
+        navigator.serviceWorker.register('/oficina-app/sw.js')
           .then(reg => console.log('App pronto para uso!'))
           .catch(err => console.warn('Erro ao carregar app', err));
       });

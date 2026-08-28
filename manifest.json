@@ -1,7 +1,7 @@
 {
   "name": "Oficina Mecânica",
   "short_name": "Oficina",
-  "start_url": "/oficina/index.html",
+  "start_url": "/oficina-app/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
