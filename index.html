@@ -24,13 +24,58 @@
       });
     }
   </script>
+
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; text-align: center; }
+    .container { max-width: 400px; background: white; margin: 0 auto; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    h1 { color: #333; font-size: 24px; }
+    .campo { margin-bottom: 15px; text-align: left; }
+    label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
+    input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 16px; }
+    button { width: 100%; padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer; }
+    button:hover { background-color: #218838; }
+    .resultado { margin-top: 20px; padding: 15px; background-color: #e2f0d9; border-radius: 4px; font-size: 18px; font-weight: bold; color: #385723; display: none; }
+  </style>
 </head>
 <body>
 
-  <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+  <div class="container">
     <h1>Sistema da Oficina</h1>
-    <p>O aplicativo da sua oficina está funcionando 100% offline!</p>
+    <p style="color: green; font-size: 12px;">★ Modo Offline Ativo</p>
+    
+    <!-- Formulário para fazer as contas -->
+    <div class="campo">
+      <label for="pecas">Valor das Peças (R$):</label>
+      <input type="number" id="pecas" placeholder="0,00" min="0" step="0.01">
+    </div>
+
+    <div class="campo">
+      <label for="maobra">Mão de Obra (R$):</label>
+      <input type="number" id="maobra" placeholder="0,00" min="0" step="0.01">
+    </div>
+
+    <button onclick="calcularTotal()">Calcular Total</button>
+
+    <!-- Onde o resultado vai aparecer -->
+    <div id="resultado" class="resultado"></div>
   </div>
+
+  <!-- Programa lógico que faz a conta -->
+  <script>
+    function calcularTotal() {
+      // Pega os valores digitados na tela
+      const valorPecas = parseFloat(document.getElementById('pecas').value) || 0;
+      const valorMaoObra = parseFloat(document.getElementById('maobra').value) || 0;
+      
+      // Faz a soma matemática
+      const total = valorPecas + valorMaoObra;
+      
+      // Exibe o resultado formatado em dinheiro na tela
+      const campoResultado = document.getElementById('resultado');
+      campoResultado.innerText = "Total Geral: R$ " + total.toFixed(2).replace('.', ',');
+      campoResultado.style.display = 'block';
+    }
+  </script>
 
 </body>
 </html>
