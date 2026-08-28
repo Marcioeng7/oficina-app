@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oficina Mecânica</title>
+
+  <!-- Link para o Aplicativo -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Configurações para iPhone -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Oficina">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
+  <!-- Ativador do modo offline atualizado para o GitHub Pages -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/oficina/sw.js')
+          .then(reg => console.log('App pronto para uso!'))
+          .catch(err => console.warn('Erro ao carregar app', err));
+      });
+    }
+  </script>
+</head>
+<body>
+
+  <!-- O conteúdo visível do seu site entra aqui abaixo -->
+  <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+    <h1>Sistema da Oficina</h1>
+    <p>O aplicativo da sua oficina está funcionando 100% offline!</p>
+  </div>
+
+</body>
+</html>
