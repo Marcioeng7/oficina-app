@@ -1,20 +1,22 @@
-const CACHE_NAME = 'oficina-v3'; 
+const CACHE_NAME = 'oficina-v4'; 
 const ASSETS = [
   '/oficina-app/',
   '/oficina-app/index.html',
-  '/oficina-app/manifest.json'
+  '/oficina-app/manifest.json',
+  '/oficina-app/icon-192.png',
+  '/oficina-app/icon-512.png'
 ];
 
-// Instala o Service Worker e guarda os arquivos necessários no celular
+// Instala e força o novo Service Worker a assumir o controle imediatamente
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(ASSETS);
-    })
+    }).then(() => self.skipWaiting())
   );
 });
 
-// Ativa o Service Worker e limpa versões antigas do aplicativo
+// Remove caches antigos (v1, v2, v3) e limpa a memória do celular
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys().then((keys) => {
@@ -25,11 +27,11 @@ self.addEventListener('activate', (e) => {
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
 
-// Busca os arquivos do cache do celular quando a oficina estiver offline
+// Busca os arquivos atualizados
 self.addEventListener('fetch', (e) => {
   e.respondWith(
     caches.match(e.request).then((cachedResponse) => {
